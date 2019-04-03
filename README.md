@@ -1,4 +1,4 @@
-# ao486 port for MiSTer by Sorgelig.
+# ao486 port for DE10-Standar Edition of MiSTer
 
 Basically it's 486 compatible core, but not fast.
 Still it's a great emulator for very old DOS games/apps. 
@@ -241,3 +241,5 @@ To compile the VGABIOS do the following:
 - select the floppy on the OSD. Use the KEYs to select the floppy image. Use KEY3 to cancel.
 - after selecting the floppy or pressing cancel, ao486 boots,
 - to activate the OSD press KEY2.
+
+This project brought to you by http://www.modernhackers.com
