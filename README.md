@@ -1,4 +1,4 @@
-# ao486 port for DE10-Standar Edition of MiSTer
+# ao486 port for DE10-Standar Edition of MiSTer by modernhackers.com
 
 Basically it's 486 compatible core, but not fast.
 Still it's a great emulator for very old DOS games/apps. 
