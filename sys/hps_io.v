@@ -55,7 +55,7 @@ module hps_io #(parameter STRLEN=0, PS2DIV=2000)
 	output reg  [1:0] dma_status,
 	input       [1:0] dma_req,
 	
-	input      [15:0] uart_mode,
+	//input      [15:0] uart_mode,
 
 	// ps2 keyboard emulation
 	output            ps2_kbd_clk_out,
@@ -299,7 +299,7 @@ always@(posedge clk_sys) begin
 							endcase
 
 					//UART flags
-					'h28: io_dout <= uart_mode;
+					//'h28: io_dout <= uart_mode;
 
 					'h61: if(byte_cnt == 1) begin
 								dma_addr[15:0] <= io_din;

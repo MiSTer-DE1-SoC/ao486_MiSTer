@@ -320,7 +320,7 @@ always @(posedge clk_sys) begin
 	end
 end
 
-cyclonev_hps_interface_peripheral_uart uart
+/*cyclonev_hps_interface_peripheral_uart uart
 (
 	.ri(0),
 	.dsr(uart_dsr),
@@ -331,7 +331,7 @@ cyclonev_hps_interface_peripheral_uart uart
 	.rts(uart_rts),
 	.rxd(uart_rxd),
 	.txd(uart_txd)
-);
+);*/
 
 wire aspi_sck,aspi_mosi,aspi_ss;
 cyclonev_hps_interface_peripheral_spi_master spi
@@ -739,7 +739,7 @@ assign AUDIO_L     = SW[0] ? HDMI_SCLK  : anl;
 assign HDMI_MCLK = 0;
 
 wire [15:0] audio_l, audio_l_pre;
-aud_mix_top audmix_l
+/*aud_mix_top audmix_l
 (
 	.clk(clk_audio),
 	.att(vol_att),
@@ -753,9 +753,9 @@ aud_mix_top audmix_l
 	.pre_out(audio_l_pre),
 	.out(audio_l)
 );
-
+*/
 wire [15:0] audio_r, audio_r_pre;
-aud_mix_top audmix_r
+/*aud_mix_top audmix_r
 (
 	.clk(clk_audio),
 	.att(vol_att),
@@ -769,9 +769,9 @@ aud_mix_top audmix_r
 	.pre_out(audio_r_pre),
 	.out(audio_r)
 );
-
+*/
 wire anl,anr,spdif;
-audio_out audio_out
+/*audio_out audio_out
 (
 	.reset(reset),
 	.clk(clk_audio),
@@ -784,7 +784,7 @@ audio_out audio_out
    .spdif(spdif),
 	.dac_l(anl),
 	.dac_r(anr)
-);
+);*/
 
 wire [28:0] aram_address;
 wire  [7:0] aram_burstcount;
@@ -795,7 +795,7 @@ wire        aram_read;
 
 wire [15:0] alsa_l, alsa_r;
 
-alsa alsa
+/*alsa alsa
 (
 	.reset(reset),
 
@@ -813,10 +813,10 @@ alsa alsa
 
 	.pcm_l(alsa_l),
 	.pcm_r(alsa_r)
-);
+);*/
 
 //// DE10-Standard audio codec i2c ////
-wire exchan;
+/*wire exchan;
 wire mix;
 assign exchan = 1'b0;
 assign mix = 1'b0;
@@ -838,7 +838,7 @@ audio_top audio_top (
   .i2c_sclk     (I2C_SCLK),  	// CODEC config clock
   .i2c_sdat     (I2C_SDAT),   // CODEC config data
 );
-
+*/
 ////////////////  User I/O (USB 3.0 connector) /////////////////////////
 
 assign USER_IO[0] =                       !user_out[0]  ? 1'b0 : 1'bZ;
@@ -920,11 +920,11 @@ emu emu
 	.VIDEO_ARX(ARX),
 	.VIDEO_ARY(ARY),
 
-	.AUDIO_L(audio_ls),
-	.AUDIO_R(audio_rs),
-	.AUDIO_S(audio_s),
-	.AUDIO_MIX(audio_mix),
-	.TAPE_IN(0),
+	//.AUDIO_L(audio_ls),
+	//.AUDIO_R(audio_rs),
+	//.AUDIO_S(audio_s),
+	//.AUDIO_MIX(audio_mix),
+	//.TAPE_IN(0),
 
 	.SD_SCK(SDIO_CLK),
 	.SD_MOSI(SDIO_CMD),
@@ -955,12 +955,12 @@ emu emu
 	.SDRAM_CLK(SDRAM_CLK),
 	.SDRAM_CKE(SDRAM_CKE),
 
-	.UART_CTS(uart_rts),
-	.UART_RTS(uart_cts),
-	.UART_RXD(uart_txd),
-	.UART_TXD(uart_rxd),
-	.UART_DTR(uart_dsr),
-	.UART_DSR(uart_dtr),
+	//.UART_CTS(uart_rts),
+	//.UART_RTS(uart_cts),
+	//.UART_RXD(uart_txd),
+	//.UART_TXD(uart_rxd),
+	//.UART_DTR(uart_dsr),
+	//.UART_DSR(uart_dtr),
 
 	.USER_OUT(user_out),
 	.USER_IN(user_in),
@@ -1002,7 +1002,7 @@ end
 endmodule
 
 /////////////////////////////////////////////////////////////////////
-
+/*
 module aud_mix_top
 (
 	input             clk,
@@ -1048,5 +1048,5 @@ always @(posedge clk) begin
 	//clamping
 	out <= ^a4[16:15] ? {a4[16],{15{a4[15]}}} : a4[15:0];
 end
-
 endmodule
+*/

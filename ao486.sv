@@ -59,11 +59,11 @@ module emu
 	output  [1:0] LED_POWER,
 	output  [1:0] LED_DISK,
 
-	output [15:0] AUDIO_L,
-	output [15:0] AUDIO_R,
-	output        AUDIO_S, // 1 - signed audio samples, 0 - unsigned
-	output  [1:0] AUDIO_MIX, // 0 - no mix, 1 - 25%, 2 - 50%, 3 - 100% (mono)
-	input         TAPE_IN,
+	//output [15:0] AUDIO_L,
+	//output [15:0] AUDIO_R,
+	//output        AUDIO_S, // 1 - signed audio samples, 0 - unsigned
+	//output  [1:0] AUDIO_MIX, // 0 - no mix, 1 - 25%, 2 - 50%, 3 - 100% (mono)
+	//input         TAPE_IN,
 
 	// SD-SPI
 	output        SD_SCK,
@@ -98,12 +98,12 @@ module emu
 	output        SDRAM_nRAS,
 	output        SDRAM_nWE,
 
-	input         UART_CTS,
-	output        UART_RTS,
-	input         UART_RXD,
-	output        UART_TXD,
-	output        UART_DTR,
-	input         UART_DSR,
+	//input         UART_CTS,
+	//output        UART_RTS,
+	//input         UART_RXD,
+	//output        UART_TXD,
+	//output        UART_DTR,
+	//input         UART_DSR,
 
 	// Open-drain User port.
 	// 0 - D+/RX
@@ -125,10 +125,10 @@ assign CE_PIXEL  = 1;
 assign VIDEO_ARX = status[1] ? 8'd16 : 8'd4;
 assign VIDEO_ARY = status[1] ? 8'd9  : 8'd3;
 
-assign AUDIO_S   = 1;
-assign AUDIO_MIX = 0;
-assign AUDIO_L   = sb_out_l + {2'b00, {14{speaker_ena & speaker_out}}};
-assign AUDIO_R   = sb_out_r + {2'b00, {14{speaker_ena & speaker_out}}};
+//assign AUDIO_S   = 1;
+//assign AUDIO_MIX = 0;
+//assign AUDIO_L   = sb_out_l + {2'b00, {14{speaker_ena & speaker_out}}};
+//assign AUDIO_R   = sb_out_r + {2'b00, {14{speaker_ena & speaker_out}}};
 
 assign LED_DISK[1] = 1;
 assign LED_POWER   = 0;
@@ -208,7 +208,7 @@ hps_io #(.STRLEN(($size(CONF_STR))>>3), .PS2DIV(4000)) hps_io
 
 	.ioctl_wait(ioctl_wait),
 	
-	.uart_mode(16'b000_11111_000_11111),
+	//.uart_mode(16'b000_11111_000_11111),
 
 	.dma_din(dma_din),
 	.dma_dout(dma_dout),
@@ -271,9 +271,9 @@ system u0
 	.vga_g                (VGA_G),
 	.vga_b                (VGA_B),
 
-	.sound_sample_l       (sb_out_l),
-	.sound_sample_r       (sb_out_r),
-	.sound_fm_mode        (status[3]),
+	//.sound_sample_l       (sb_out_l),
+	//.sound_sample_r       (sb_out_r),
+	//.sound_fm_mode        (status[3]),
 	
 	.speaker_enable       (speaker_ena),
 	.speaker_out          (speaker_out),
@@ -292,10 +292,10 @@ system u0
 	.ps2_mouseclk_out     (ps2_mouse_clk_in),
 	.ps2_mousedat_out     (ps2_mouse_data_in),
 
-	.joystick_dig_1       (joystick_0),
-	.joystick_dig_2       (joystick_1),
-	.joystick_ana_1       (joystick_analog_0),
-	.joystick_ana_2       (joystick_analog_1),
+	//.joystick_dig_1       (joystick_0),
+	//.joystick_dig_2       (joystick_1),
+	//.joystick_ana_1       (joystick_analog_0),
+	//.joystick_ana_2       (joystick_analog_1),
 
 	.cpu_reset_reset      (cpu_reset),
 
@@ -326,17 +326,17 @@ system u0
 	.disk_result_ok       (dma_status[0]),
 	.disk_result_error    (dma_status[1]),
 	
-	.uart_h_cts_n         (UART_CTS),
-	.uart_h_rts_n         (UART_RTS),
-	.uart_s_sin           (UART_RXD),
-	.uart_s_sout          (UART_TXD),
-	.uart_h_dsr_n         (UART_DSR),
-	.uart_h_dtr_n         (UART_DTR),
-	.uart_h_dcd_n         (UART_DSR),
-	.uart_h_ri_n          (1),
-	.uart_s_sout_oe       (),
-	.uart_h_out1_n        (),
-	.uart_h_out2_n        ()
+	//.uart_h_cts_n         (UART_CTS),
+	//.uart_h_rts_n         (UART_RTS),
+	//.uart_s_sin           (UART_RXD),
+	//.uart_s_sout          (UART_TXD),
+	//.uart_h_dsr_n         (UART_DSR),
+	//.uart_h_dtr_n         (UART_DTR),
+	//.uart_h_dcd_n         (UART_DSR),
+	//.uart_h_ri_n          (1),
+	//.uart_s_sout_oe       (),
+	//.uart_h_out1_n        (),
+	//.uart_h_out2_n        ()
 );
 
 wire       uart_h_dtr_n;
